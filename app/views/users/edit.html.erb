@@ -1,0 +1,144 @@
+<%= render "shared/second-header"%>
+
+
+<%= form_with model: @user, url: user_path(current_user), class: 'registration-main', local: true do |f| %>
+
+<div class='form-wrap'>
+  <div class='form-header'>
+    <h1 class='form-header-text'>
+      会員情報入力
+    </h1>
+  </div>
+
+    <%= render 'shared/error_messages', model: @user %>
+
+
+  <div class="form-group">
+      <div class="form-group">
+      <div class='form-text-wrap'>
+      <label class="form-text">ニックネーム</label>
+      <span class="indispensable">必須</span>
+    </div>
+      <%= f.text_area :nickname, class:"input-default", id:"nickname", placeholder:"例) furima太郎", maxlength:"40" %>
+    </div>
+        <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">都道府県</label>
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"select-box", id:"prefecture"}) %>
+      </div>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">性自認</label>
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.collection_select(:gender_identity_id, GenderIdentity.all, :id, :name, {}, {class:"select-box", id:"gender_identity"}) %>
+      </div>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">性的指向</label>
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.collection_select(:sexual_orientation_1_id, SexualOrientation1.all, :id, :name, {}, {class:"select-box", id:"sexual_orientation_1_id"}) %>
+      </div>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">性的指向</label>
+          <span class="indispensable">任意</span>
+        </div>
+        <%= f.collection_select(:sexual_orientation_2_id, SexualOrientation2.all, :id, :name, {}, {class:"select-box", id:"sexual_orientation_2_id"}) %>
+      </div>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">性的指向</label>
+          <span class="indispensable">任意</span>
+        </div>
+        <%= f.collection_select(:sexual_orientation_3_id, SexualOrientation3.all, :id, :name, {}, {class:"select-box", id:"sexual_orientation_3_id"}) %>
+      </div>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">性的指向</label>
+          <span class="indispensable">任意</span>
+        </div>
+        <%= f.collection_select(:sexual_orientation_4_id, SexualOrientation4.all, :id, :name, {}, {class:"select-box", id:"sexual_orientation_4_id"}) %>
+      </div>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">性的指向</label>
+          <span class="indispensable">任意</span>
+        </div>
+        <%= f.collection_select(:sexual_orientation_5_id, SexualOrientation5.all, :id, :name, {}, {class:"select-box", id:"sexual_orientation_5_id"}) %>
+      </div>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">性的指向</label>
+          <span class="indispensable">任意</span>
+        </div>
+        <%= f.collection_select(:sexual_orientation_6_id, SexualOrientation6.all, :id, :name, {}, {class:"select-box", id:"sexual_orientation_6_id"}) %>
+      </div>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">性的指向</label>
+          <span class="indispensable">任意</span>
+        </div>
+        <%= f.collection_select(:sexual_orientation_7_id, SexualOrientation7.all, :id, :name, {}, {class:"select-box", id:"sexual_orientation_7_id"}) %>
+      </div>
+      <div class="field">
+       <%= f.label :height, '身長' %><br>
+       <%= f.number_field :height, min: 0 %>
+      </div>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">体型</label>
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.collection_select(:body_type_id, BodyType.all, :id, :name, {}, {class:"select-box", id:"body_type"}) %>
+      </div>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">利用目的</label>
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.collection_select(:purpose_id, Purpose.all, :id, :name, {}, {class:"select-box", id:"purpose"}) %>
+      </div>
+
+       <div class="items-explain">
+        <div class="weight-bold-text">
+          自己紹介文
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_area :self_pr, class:"self-pr-text", id:"item-info", placeholder:"自己紹介文（必須 1,000文字まで）" ,rows:"7" ,maxlength:"1000" %>
+      </div>
+      
+      <div class="img-upload">
+      <div class="weight-bold-text">
+        画像
+        <span class="indispensable">必須</span>
+      </div>
+      <div class="click-upload">
+        <p>
+          クリックしてファイルをアップロード
+        </p>
+        <%= f.file_field :image, id:"item-image" %>
+      </div>
+    </div>
+    </div>
+    
+    <p class='info-text'>※ 本人情報は正しく入力してください。会員登録後、修正するにはお時間を頂く場合があります。</p>
+  </div>
+  <div class="form-group">
+    <h2 class='form-bottom-text'>
+      「会員登録」のボタンを押すことにより、
+      <span>利用規約</span>
+      <br>に同意したものとみなします
+    </h2>
+  </div>
+  <div class='register-btn'>
+    <%= f.submit "編集する" ,class:"register-red-btn" %>
+  </div>
+  <p class='register-info'>本人情報の登録について</p>
+</div>
+<% end %>
+
+<%= render "shared/second-footer"%>

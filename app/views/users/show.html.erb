@@ -1,0 +1,81 @@
+<div class="item-show">
+  <div class="item-box">
+    <h2 class="name">
+      <%= @user.nickname %>
+    </h2>
+    <div class="item-img-content">
+      <%= image_tag @user.image, class:"user-box-img" %>
+    </div>
+    
+
+ 
+    <% if user_signed_in? && current_user.id == @user.id %>
+    <%= link_to "プロフィールの編集", edit_user_path(@user.id), method: :get, class: "item-red-btn" %>
+    <p class="or-text">or</p>
+    <%= link_to "削除", user_path(@user.id), data: {turbo_method: :delete}, class:"user-destroy" %>
+    <% end %>
+
+    
+    <%# if user_signed_in? && current_user.id != @item.user_id %>
+    <%#= link_to "いいね", item_purchases_path(@item), data: { turbo: false }, class:"item-red-btn"%>
+    <%# end %>
+
+
+    <table class="detail-table">
+      <tbody>
+        <tr>
+          <th class="detail-item">年齢</th>
+          <td class="detail-value"><%= ((Time.zone.now - @user.birth_date.to_time) / 1.year.seconds).floor %>歳</td>
+        </tr>
+        <tr>
+          <th class="detail-item">居住県</th>
+          <td class="detail-value"><%= @user.prefecture.name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">性自認</th>
+          <td class="detail-value"><%= @user.gender_identity.name %></td>
+        </tr>
+        <tr>
+      <th class="detail-item">性的指向</th>
+      <td class="detail-value">
+       <%= @user.sexual_orientation_1.name %>
+       <%= @user.sexual_orientation_2.name %>
+       <%= @user.sexual_orientation_3.name %>
+       <%= @user.sexual_orientation_4.name %>
+       <%= @user.sexual_orientation_5.name %>
+       <%= @user.sexual_orientation_6.name %>
+       <%= @user.sexual_orientation_7.name %>
+     </td>
+     </tr>
+        <tr>
+          <th class="detail-item">身長</th>
+          <td class="detail-value"><%= @user.height %>cm</td>
+        </tr>
+        <tr>
+          <th class="detail-item">体型</th>
+          <td class="detail-value"><%= @user.body_type.name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">利用目的</th>
+          <td class="detail-value"><%= @user.purpose.name %></td>
+        </tr>
+       <tr>
+        <th class="detail-item">自己紹介</th>
+        <td class="detail-value"><%= @user.self_pr %></td>
+       </tr>
+      </tbody>
+    </table>
+
+
+
+<div class="option">
+  <div class="favorite-btn">
+    <div id="like-btn<%= @user.id %>">
+ <%= render partial: "likes/like", locals: { user: @user } %>
+    </div>
+  </div>
+</div>
+
+    <!-- 報告ボタンの内容がここに来る -->
+  </div>
+</div>
