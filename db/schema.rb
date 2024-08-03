@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_07_31_080331) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_03_075036) do
   create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -39,6 +39,20 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_31_080331) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "chat_room_users", charset: "utf8", force: :cascade do |t|
+    t.bigint "chat_room_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_room_id"], name: "index_chat_room_users_on_chat_room_id"
+    t.index ["user_id"], name: "index_chat_room_users_on_user_id"
+  end
+
+  create_table "chat_rooms", charset: "utf8", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "likes", charset: "utf8", force: :cascade do |t|
     t.bigint "from_user_id", null: false
     t.bigint "to_user_id", null: false
@@ -47,6 +61,16 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_31_080331) do
     t.datetime "updated_at", null: false
     t.index ["from_user_id"], name: "index_likes_on_from_user_id"
     t.index ["to_user_id"], name: "index_likes_on_to_user_id"
+  end
+
+  create_table "messages", charset: "utf8", force: :cascade do |t|
+    t.bigint "chat_room_id", null: false
+    t.bigint "user_id", null: false
+    t.text "text", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_room_id"], name: "index_messages_on_chat_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "users", charset: "utf8", force: :cascade do |t|
@@ -82,6 +106,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_31_080331) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "chat_room_users", "chat_rooms"
+  add_foreign_key "chat_room_users", "users"
   add_foreign_key "likes", "users", column: "from_user_id"
   add_foreign_key "likes", "users", column: "to_user_id"
+  add_foreign_key "messages", "chat_rooms"
+  add_foreign_key "messages", "users"
 end
