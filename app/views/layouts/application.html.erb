@@ -19,6 +19,7 @@
         <div class="user_nav grid-6">
         <% if user_signed_in? %>
         <li><%= link_to "マイページ", "/users/#{current_user.id}" %></li>
+        <li><%= link_to "メッセージ", chat_rooms_path %></li>
         <li><%= link_to 'ログアウト',  destroy_user_session_path, data: { turbo_method: :delete }, class: "logout" %></li> 
         <% else %>
         <li><%= link_to 'ログイン', new_user_session_path, class: "login" %></li>
