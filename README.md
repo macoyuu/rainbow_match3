@@ -45,41 +45,19 @@
   - belongs_to :to_user, class_name: 'User'
 
 
-## chat_rooms テーブル
+## Comments テーブル
 |Column             |Type       |Options  |
 |-------------------|-----------|---------|
-|created_at	        |datetime   |null: false |
-|updated_at	        |datetime   |null: false |
-
-  - has_many :chat_room_users
-  - has_many :users, through: :chat_room_users
-  - has_many :messages
-
-## chat_room_users テーブル
-|Column             |Type       |Options  |
-|-------------------|-----------|---------|
-|chat_room          |references |null: false, foreign_key: true |
-|user               |references |null: false, foreign_key: true |
-
-  - belongs_to :chat_room
-  - belongs_to :user
-
-## messages テーブル
-|Column             |Type       |Options  |
-|-------------------|-----------|---------|
-|chat_room          |references |null: false, foreign_key: true |
-|user               |references |null: false, foreign_key: true |
+|from_user          |references |null: false, foreign_key: true |
+|to_user            |references |null: false, foreign_key: true |
 |text               |text       |null: false |
 
-  - belongs_to :chat_room
-  - belongs_to :user
+  - belongs_to :from_user, class_name: 'User'
+  - belongs_to :to_user, class_name: 'User'
 
 
 ### Association
 - user
-  - has_many :chat_room_users
-  - has_many :chat_rooms, through: :chat_room_users
-  - has_many :messages
   - has_many :likes, foreign_key: :from_user_id
   - has_many :received_likes, class_name: 'Like', foreign_key: :to_user_id
 
@@ -88,20 +66,8 @@
   - belongs_to :from_user, class_name: 'User', foreign_key: :from_user_id
   - belongs_to :to_user, class_name: 'User', foreign_key: :to_user_id
 
-
- - chatroom
-  - has_many :chat_room_users
-  - has_many :users, through: :chat_room_users
-  - has_many :messages
-
-
-- chat_room_user
-  - belongs_to :chat_room
-  - belongs_to :user
-
-
-- message
-  - belongs_to :chat_room
-  - belongs_to :user 
+  comment
+  - belongs_to :from_user, class_name: 'User', foreign_key: :from_user_id
+  - belongs_to :to_user, class_name: 'User', foreign_key: :to_user_id
   
 

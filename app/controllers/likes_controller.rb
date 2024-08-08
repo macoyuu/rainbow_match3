@@ -64,3 +64,4 @@ def match_users(user1, user2)
   chat_room
  end
 end
+end

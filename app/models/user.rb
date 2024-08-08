@@ -18,9 +18,7 @@ class User < ApplicationRecord
   has_many :likes, foreign_key: :from_user_id, class_name: 'Like', dependent: :destroy
   has_many :sent_likes, foreign_key: :from_user_id, class_name: 'Like', dependent: :destroy
   has_many :received_likes, foreign_key: :to_user_id, class_name: 'Like', dependent: :destroy
-  has_many :chat_room_users
-  has_many :chat_rooms, through: :chat_room_users
-  has_many :messages
+  has_many :comment
  
   
   def liked_by?(user)

@@ -1,0 +1,16 @@
+<div class="container">
+  <%= form_with(model: [@user, @comment], local: true) do |form| %>
+    <%= form.text_area :text, placeholder: "コメントする", rows: "2" %>
+    <%= form.submit "SEND" %>
+  <% end %>
+</div>
+
+<div class="comments">
+  <h4>＜コメント一覧＞</h4>
+  <% @comments.each do |comment| %>
+    <p>
+      <strong><%= link_to comment.from_user.nickname, user_path(comment.from_user) %>：</strong>
+      <%= comment.text %>
+    </p>
+  <% end %>
+</div>

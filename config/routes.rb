@@ -4,8 +4,7 @@ Rails.application.routes.draw do
   root to: 'users#index'
   resources :users, only: [:index, :edit, :show] do
     resources :likes, only: [:create, :destroy]
+    resources :comments, only: [:index, :show, :create]
   end
-  resources :chat_rooms, only: [:index, :show, :create] do
-    resources :messages, only: [:index, :create]
-  end
+  
 end
