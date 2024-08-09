@@ -43,25 +43,6 @@ def set_user
   @user = User.find(params[:user_id])
 end
 
-def match_users(user1, user2)
-  chat_room = ChatRoom.joins(:chat_room_users)
-                      .where(chat_room_users: { user_id: [user1.id, user2.id] })
-                      .group(:id)
-                      .having('COUNT(chat_room_users.id) = 2')
-                      .first
 
-  # 既存のチャットルームがない場合、新しく作成
-  unless chat_room
-    chat_room = ChatRoom.create
-    if chat_room.persisted?
-      ChatRoomUser.create(chat_room: chat_room, user: user1)
-      ChatRoomUser.create(chat_room: chat_room, user: user2)
-    else
-      # エラー処理 (例: ログに出力)
-      Rails.logger.error "チャットルームの作成に失敗しました: #{chat_room.errors.full_messages.join(", ")}"
-    end
-
-  chat_room
- end
 end
 end

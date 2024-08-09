@@ -77,9 +77,11 @@
 </div>
 
 
-<div class="comments-link">
-      <%= link_to "コメントを見る", user_comments_path(@user), class: "btn" %>
-    </div>
+<% if current_user.matched_with?(@user) %>
+      <div class="comments-link">
+        <%= link_to "コメントを見る", user_comments_path(@user), class: "btn" %>
+      </div>
+    <% end %>
+
   </div>
 </div>
- 
