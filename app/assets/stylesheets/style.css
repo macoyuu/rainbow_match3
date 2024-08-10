@@ -104,6 +104,7 @@ h1 {
  * Address styling not present in IE 8/9, Safari 5, and Chrome. */
 abbr[title] {
   border-bottom: 1px dotted;
+  color: 
 }
 
 /*
@@ -642,8 +643,9 @@ html {
 }
 
 body {
-  padding-top: 60px;
+  padding-top: 200px;
 }
+
 
 h1,
 h2,
@@ -704,7 +706,46 @@ form input[type="submit"] {
 }
 
 .btn,
+
+.custom-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.custom-grid-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.user-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+}
+
+.user-nickname, .login, .sign-up, .logout {
+  /* ブートストラップのスタイルに似せるために必要なスタイルを追加 */
+  text-decoration: none;
+  color: blue; /* 任意の色を設定 */
+  font-weight: bold;
+}
+
+.header {
+  height: 200px; /* 高さを指定 */
+}
+
+.header-bar {
+  padding: 20px 0; /* パディングを調整 */
+}
+
 header.header div.header__bar.row div.grid-6 a.post {
+  height: 150px;
   padding: 8px 20px;
   font-size: 14px;
   border: 2px solid #57C3E9;
@@ -744,7 +785,7 @@ header.header {
   left: 0;
   right: 0;
   z-index: 5;
-  height: 62px;
+  height: 200px;
 }
 
 header.header div.header__bar.row {
@@ -820,6 +861,11 @@ header.header .user_nav ul li a {
   padding: 10px 20px;
   text-align: left;
   border-bottom: 1px solid #d8d8d8;
+}
+
+.your-custom-class {
+  max-width: 20%;
+  height: auto;
 }
 
 .form {
@@ -1057,3 +1103,4 @@ footer p {
 .search-form .search-btn {
   width: 10%;
 }
+

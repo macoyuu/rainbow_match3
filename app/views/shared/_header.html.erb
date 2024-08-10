@@ -7,18 +7,20 @@
     </form>
   </div>
   <div class='nav'>
-    
-    <ul class='lists-right'>
-
+    <div class="user_nav grid-6">
+    <span><%= current_user.nickname %>
+      <ul class="user__info">
+      <li>
       <% if user_signed_in? %>
-      <li><%= link_to current_user.nickname,  user_registration_path, class: "user-nickname" %></li>
-      <li><%= link_to 'ログアウト',  destroy_user_session_path, data: { turbo_method: :delete }, class: "logout" %></li> 
+      <%= link_to current_user.nickname,  user_registration_path, class: "user-nickname" %>
+      <%= link_to '通知', user_notifications_path, class: "user-nickname" %>
+      <%= link_to 'ログアウト',  destroy_user_session_path, data: { turbo_method: :delete }, class: "logout" %>
       <% else %>
-      <li><%= link_to 'ログイン', new_user_session_path, class: "login" %></li>
-      <li><%= link_to '新規登録', new_user_registration_path, class: "sign-up" %></li>
-      </div>
+      <%= link_to 'ログイン', new_user_session_path, class: "login" %>
+      <%= link_to '新規登録', new_user_registration_path, class: "sign-up" %>
       <% end %>
-      
+      </li>
     </ul>
+    </span>  
   </div>
 </header>

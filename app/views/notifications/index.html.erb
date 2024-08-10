@@ -1,0 +1,10 @@
+<h1>いいね通知一覧</h1>
+<ul>
+  <% @activities.each do |activity| %>
+    <% if activity.trackable.present? && activity.trackable.to_user == current_user %>
+      <li>
+        <%= activity.owner.nickname %>さんが<%= current_user.nickname %>さんにいいねしました
+      </li>
+    <% end %>
+  <% end %>
+</ul>
