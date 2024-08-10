@@ -1,4 +1,8 @@
 class Like < ApplicationRecord
+  include PublicActivity::Model
+   tracked owner: ->(controller, model) { model.from_user },
+           recipient: ->(controller, model) { model.to_user }
+  
   belongs_to :from_user, class_name: 'User'
   belongs_to :to_user, class_name: 'User'
   has_many :comments
