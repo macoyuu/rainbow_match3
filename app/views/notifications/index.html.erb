@@ -1,9 +1,13 @@
-<h1>いいね通知一覧</h1>
+<h1>通知一覧</h1>
 <ul>
   <% @activities.each do |activity| %>
     <% if activity.trackable.present? && activity.trackable.to_user == current_user %>
       <li>
-        <%= activity.owner.nickname %>さんが<%= current_user.nickname %>さんにいいねしました
+        <% if activity.trackable_type == 'Like' %>
+          <%= activity.owner.nickname %>さんが<%= current_user.nickname %>さんにいいねしました
+        <% elsif activity.trackable_type == 'Comment' %>
+          <%= activity.owner.nickname %>さんが<%= current_user.nickname %>さんにコメントしました
+        <% end %>
       </li>
     <% end %>
   <% end %>

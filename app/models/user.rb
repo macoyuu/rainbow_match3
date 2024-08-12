@@ -20,7 +20,7 @@ class User < ApplicationRecord
   has_many :received_likes, foreign_key: :to_user_id, class_name: 'Like', dependent: :destroy
   has_many :from_comments, class_name: 'Comment', foreign_key: 'from_user_id'
   has_many :to_comments, class_name: 'Comment', foreign_key: 'to_user_id'
- 
+  
   
   def liked_by?(user)
     received_likes.where(from_user_id: user.id).exists?

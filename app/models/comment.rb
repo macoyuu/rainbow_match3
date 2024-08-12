@@ -1,4 +1,11 @@
 class Comment < ApplicationRecord
+  include PublicActivity::Model
+  tracked owner: ->(controller, model) { model.from_user },
+          recipient: ->(controller, model) { model.to_user },
+          params: {
+            content: 'content'  # 必要に応じてパラメータを設定
+          }
+          
   belongs_to :from_user, class_name: 'User'
   belongs_to :to_user, class_name: 'User'
 
