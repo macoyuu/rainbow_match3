@@ -81,3 +81,7 @@ gem 'active_hash'
 gem 'pry-rails'
 gem 'public_activity'
 gem 'unread'
+
+group :production do
+  gem 'pg'
+end
