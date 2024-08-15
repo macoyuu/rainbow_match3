@@ -11,8 +11,6 @@
  
     <% if user_signed_in? && current_user.id == @user.id %>
     <%= link_to "プロフィールの編集", edit_user_path(@user.id), method: :get, class: "item-red-btn" %>
-    <p class="or-text">or</p>
-    <%= link_to "削除", user_path(@user.id), data: {turbo_method: :delete}, class:"user-destroy" %>
     <% end %>
 
     
