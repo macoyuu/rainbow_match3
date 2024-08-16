@@ -1,11 +1,11 @@
       <% if user_signed_in? && current_user != @user %>
         <% if @user.liked_by?(current_user) %>
           <%= link_to user_like_path(@user), data: { turbo_method: :delete }, class: "user_likes", remote: true do %>
-            <%= image_tag "kkrn_icon_heart_1", class: "favorite-star-icon", width: "20", height: "20" %> いいね済
+            <%= image_tag "kkrn_icon_heart_1.png", class: "favorite-star-icon", width: "20", height: "20" %> いいね済
           <% end %>
         <% else %>
           <%= link_to user_likes_path(@user), data: { turbo_method: :post }, class: "user_likes", remote: true do %>
-            <%= image_tag "kkrn_icon_heart_1", class: "favorite-star-icon", width: "20", height: "20" %> いいねする
+            <%= image_tag "kkrn_icon_heart_1.png", class: "favorite-star-icon", width: "20", height: "20" %> いいねする
           <% end %>
         <% end %>
       <% end %>
