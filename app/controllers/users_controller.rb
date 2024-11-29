@@ -4,7 +4,11 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: [:index]
 
 def index
-  @users = User.where.not(id: current_user.id)
+  if params[:gender_identity_id].present?
+    @users = User.where(gender_identity_id: params[:gender_identity_id]).where.not(id: current_user.id)
+  else
+    @users = User.where.not(id: current_user.id)
+  end
 end
 
 def show
